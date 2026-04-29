@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Times</h1>
+
+<a href="/times/novo/">+ Novo Time</a>
+
+<ul>
+    {% for t in times %}
+    <li>
+        <div>
+            <strong>{{ t.nome }}</strong><br>
+            <small>{{ t.cidade }}</small>
+        </div>
+
+<div>
+    <a href="/times/editar/{{ t.id }}">Editar</a>
+
+    <form action="/times/delete/{{ t.id }}/" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Excluir</button>
+    </form>
+    </div>
+    
+    </li>
+    {% empty %}
+    <li>Nenhum time cadastrado</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

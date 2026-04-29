@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% if time %}Editar{% else %}Novo{% endif %} Time</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <input 
+        type="text" 
+        name="nome" 
+        placeholder="Nome do time"
+        value="{{ time.nome|default:'' }}"
+    >
+
+    <input 
+        type="text" 
+        name="cidade" 
+        placeholder="Cidade"
+        value="{{ time.cidade|default:'' }}"
+    >
+
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="/times/">← Voltar</a>
+
+{% endblock %}
